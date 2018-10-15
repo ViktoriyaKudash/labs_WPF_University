@@ -1,0 +1,13 @@
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\bin\Debug\WpfControlLibrary.dll
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\bin\Debug\WpfControlLibrary.pdb
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\obj\Debug\MyButton.g.cs
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\obj\Debug\WpfControlLibrary_MarkupCompile.cache
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\obj\Debug\WpfControlLibrary_MarkupCompile.lref
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\obj\Debug\MyButton.baml
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\obj\Debug\WpfControlLibrary.g.resources
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\obj\Debug\WpfControlLibrary.Properties.Resources.resources
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\obj\Debug\WpfControlLibrary.csproj.GenerateResource.Cache
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\obj\Debug\WpfControlLibrary.csproj.CoreCompileInputs.cache
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\obj\Debug\WpfControlLibrary.dll
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\obj\Debug\WpfControlLibrary.pdb
+D:\УНИВЕР\2kurs\2semestr\STPMS\lr6\WpfControlLibrary\obj\Debug\WpfControlLibrary.csprojResolveAssemblyReference.cache

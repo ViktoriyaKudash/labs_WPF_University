@@ -1,0 +1,136 @@
+﻿<Window x:Class="lr6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:myControlLibrary="clr-namespace:WpfControlLibrary;assembly=WpfControlLibrary"
+        xmlns:local="clr-namespace:lr6"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Text Editor" Cursor="Pen"
+        Height="720" Width="1024" AllowDrop="True" 
+        Style="{DynamicResource WindowStyle}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/RU.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="{DynamicResource _File}" x:Name="File" Click="File_Click">
+                <MenuItem Header="{DynamicResource _New}" Click="NewWind"/>
+                <MenuItem Header="{DynamicResource _Save}" Click="Save_Click"/>
+                <MenuItem Header="{DynamicResource _Open}" Click="Open_Click"/>
+                <MenuItem x:Name="usedFilesMenuItem" Header="Последние файлы"/>
+            </MenuItem>
+            <MenuItem Header="{DynamicResource _Edit}" x:Name="Edit">
+                <MenuItem Header="{DynamicResource _Copy}" CommandTarget="{Binding ElementName=Field}" Command="Copy"/>
+                <MenuItem Header="{DynamicResource _Paste}" CommandTarget="{Binding ElementName=Field}" Command="Paste"/>
+                <MenuItem Header="{DynamicResource _Cut}" CommandTarget="{Binding ElementName=Field}" Command="Cut"/>
+                <MenuItem Header="{DynamicResource _Undo}" CommandTarget="{Binding ElementName=Field}" Command="Undo"/>
+                <MenuItem Header="{DynamicResource _Redo}" CommandTarget="{Binding ElementName=Field}" Command="Redo"/>
+            </MenuItem>
+            <MenuItem Header="{DynamicResource _Lang}">
+                <MenuItem Header="{DynamicResource _Ru}" Click="SetRussian" />
+                <MenuItem Header="{DynamicResource _Eng}" Click="SetEnglish"/>
+            </MenuItem>
+            <ComboBox Name="FontTypes" Height="29" Width="110" FontSize="10" GotFocus="FontTypes_GotFocus">
+                <ComboBoxItem>Arial</ComboBoxItem>
+                <ComboBoxItem>Calibri</ComboBoxItem>
+                <ComboBoxItem>Times New Roman</ComboBoxItem>
+                <ComboBoxItem>Bauhaus 93</ComboBoxItem>
+                <ComboBoxItem>Broadway</ComboBoxItem>
+            </ComboBox>
+
+
+            <Slider x:Name="Font_Size" Value="12" Minimum="0"
+                    TickFrequency="1" Maximum="100" MouseMove="Font_Size_MouseMove"
+                    PreviewMouseMove="Font_Size_MouseMove"
+                    MouseLeftButtonDown="Font_Size_MouseDown"
+                    Height="30" Width="100" ValueChanged="Font_Size_ValueChanged">
+            </Slider>
+            <TextBox x:Name="FontSizeTextBox" ToolTip="Font size" Width="38" 
+                     TextChanged="FontSizeTextBox_TextChanged" Height="20" FontSize="12"/>
+            <xctk:ColorPicker Name="BackColor" SelectedColor="Red" Closed="Color_Chenge"></xctk:ColorPicker>
+            <ComboBox Name="Theme" Height="30" Width="100" SelectionChanged="Theme_SelectionChanged">
+            </ComboBox>
+            <CheckBox x:Name="checkBox1"
+				  Content="выбрать" />
+
+        </Menu>
+        <ToolBar Grid.Row="1" >
+            <Button x:Name="Save1" ToolTip="Save" 
+                    Click="Save_Click" Width="36" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=checkBox1, 
+                                Path=IsChecked}" Value="True">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="IsPressed" Value="True" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter Property="BorderBrush" Value="Red"/>
+                                    <Setter Property="BorderThickness" Value="5"/>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Image Source="Resources/save.png" Margin="5"/>
+            </Button>
+            <Button Template="{DynamicResource shablon}" x:Name="_Open" ToolTip="Open" Click="Open_Click" Height="23" Margin="0,2,0,4.333" Width="30" RenderTransformOrigin="3.981,0.406">
+                <Image Source="Resources/open.png"/>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Width" Duration="0:0:0.5" To="40" AutoReverse="True" />
+                                            <DoubleAnimation Storyboard.TargetProperty="Height" Duration="0:0:0.5" To="35" AutoReverse="True" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <myControlLibrary:MyButton Width="30"
+                                        Height="30">
+
+            </myControlLibrary:MyButton>
+
+            <ToggleButton FontSize="20" Content="B" Unchecked="Bold_Unchecked" Command="EditingCommands.ToggleBold" x:Name="Bold" />
+            <ToggleButton FontSize="20" Content="I" Unchecked="Italic_Unchecked" Command="EditingCommands.ToggleItalic" x:Name="Italic" />
+            <ToggleButton FontSize="20" Content="U" Unchecked="UnderLine_Unchecked" Command="EditingCommands.ToggleUnderline" x:Name="UnderLine" />
+
+        </ToolBar>
+
+
+        <RichTextBox x:Name="MainText"  Grid.Row="2" >
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="YourTeeeext"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+    </Grid>
+
+</Window>
